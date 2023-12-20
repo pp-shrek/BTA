@@ -50,12 +50,15 @@
 //     console.log('Mark is not happy');
 // }
 
-const sunIsShining = true;
-const raining = true;
-const temperature = 20;
+// const sunIsShining = true;
+// const raining = true;
+// const temperature = 20;
 
-if (sunIsShining && !raining && temperature >= 20) {
-    console.log('it is a beach day');
-} else {
-    console.log('it is not a beach day');
-}
+// if (sunIsShining && !raining && temperature >= 20) {
+//     console.log('it is a beach day');
+// } else {
+//     console.log('it is not a beach day');
+// }
+
+const inputString = process.argv[2];
+console.log(inputString);
