@@ -60,5 +60,16 @@
 //     console.log('it is not a beach day');
 // }
 
+// function sum(numb1, numb2) {
+//     return numb1 + numb2;
+// }
+
+// const sum = function(numb1, numb2) {
+//     return numb1 + numb2;
+// }
+
+// const sum = (numb1, numb2) => {
+//     return numb1 + numb2;
+// }
 const inputString = process.argv[2];
 console.log(inputString);
