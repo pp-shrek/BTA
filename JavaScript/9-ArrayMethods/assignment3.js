@@ -20,7 +20,6 @@ const games = [ { id: 1586948654, date: "2022-10-27", score: 145, won: false },
 const lostGames = games.filter(game => !game.won);
 console.log(`${lostGames}`);
 let lostGamesScore = 0;
-// lostGames.forEach(game => lostGames += game.score);
 lostGames.forEach(game => lostGamesScore += game.score);
 let averageScoreLost = lostGamesScore / lostGames.length;
 

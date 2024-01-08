@@ -53,25 +53,32 @@ const { isWhileStatement } = require("typescript");
 
 // 4
 
-const shoppingSpree = (arr) => {
-    return arr.reduce ((totalCost, wish) => {
-        return (totalCost + wish.price);
-    },0) // reduce
-} // shoppingSpree
+// const shoppingSpree = (arr) => {
+//     return arr.reduce ((totalCost, wish) => {
+//         return (totalCost + wish.price);
+//     },0) // reduce
+// } // shoppingSpree
 
-const wishlist = [
-    { title: "Tesla Model S", price: 90000 },
-    { title: "4 carat diamond ring", price: 45000 },
-    { title: "Fancy hacky Sack", price: 5 },
-    { title: "Gold fidgit spinner", price: 2000 },
-    { title: "A second Tesla Model S", price: 90000 }
-];
+// const wishlist = [
+//     { title: "Tesla Model S", price: 90000 },
+//     { title: "4 carat diamond ring", price: 45000 },
+//     { title: "Fancy hacky Sack", price: 5 },
+//     { title: "Gold fidgit spinner", price: 2000 },
+//     { title: "A second Tesla Model S", price: 90000 }
+// ];
 
-console.log(shoppingSpree(wishlist)); // 227005
+// console.log(shoppingSpree(wishlist)); // 227005
 
 // 5
 
-var arrays = [
+const flatten = (arrays) => {
+    //const returnArr = [];
+    return arrays.reduce ((concatArr, arr) => {
+        return concatArr.concat(arr);
+    },[]) // reduce
+} // flatten
+
+const arrays = [
     ["1", "2", "3"],
     [true],
     [4, 5, 6]
