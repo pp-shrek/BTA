@@ -71,5 +71,14 @@
 // const sum = (numb1, numb2) => {
 //     return numb1 + numb2;
 // }
-const inputString = process.argv[2];
-console.log(inputString);
+// const inputString = process.argv[2];
+// console.log(inputString);
+
+const animals = [ "horse", "cow", "dog", "hamster", "donkey", "cat", "parrot" ];
+
+const animalsWithO = animals.filter(animal => animal.includes("o"));
+
+const listedAnimals = animalsWithO.forEach(animal => console.log(animal));
+
+// console.log(animals);
+// console.log(listedAnimals);
