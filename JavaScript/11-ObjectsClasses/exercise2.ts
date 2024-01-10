@@ -1,4 +1,13 @@
-const student = {
+interface Grade {
+    [key : string] : number
+} // Grade
+interface Student {
+    name : string,
+    credits : number,
+    courseGrades : Grade
+} // Student
+
+const student : Student= {
     name: "Aili",
     credits : 45,
     courseGrades : {
@@ -8,11 +17,14 @@ const student = {
     } // courseGrades
 } // student
 
+// 1
 console.log(student);
-console.log(student.credits);
-console.log(student.courseGrades);
 
-// student.courseGrades = {...student.courseGrades, "Program Design" : 3};
+// 2
+student.courseGrades["Program Design"] = 3;
+console.log(student);
+
+// 3
 
 student.courseGrades["JavaScript Basics"]=4;
-console.log(student.courseGrades);
+console.log(student);

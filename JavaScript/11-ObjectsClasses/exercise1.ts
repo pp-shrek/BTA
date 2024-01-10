@@ -10,11 +10,6 @@ const fruits : Fruit  = {
 }; // fruits
 
 const printWeight = (fruit : string) : void => {
-    // console.log(fruit);
-    // console.log(fruits.apple);
-    // console.log(fruits+"."+fruit);
-    // console.log(fruits["banana"]);
-    
     if(fruit in fruits) {
         //console.log(fruits[fruit]);
         console.log(`${fruit} weighs ${fruits[fruit]} grams`);
@@ -25,6 +20,4 @@ const printWeight = (fruit : string) : void => {
     } // else
 } // printWeight
 
-// console.log(fruits);
-// console.log(Object.keys(fruits));
 printWeight("apple");
