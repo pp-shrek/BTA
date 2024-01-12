@@ -4,3 +4,10 @@ package-lock.json
 package.json
 tsDemo
 tmp
+12-ESLint/node_modules
+12-ESLint/package-lock.json
+12-ESLint/package.json
+JavaScript/12-ESLint/.eslintrc.json
+JavaScript/14-File-IO/writeFile.txt
+JavaScript/14-File-IO/writeStream.txt
+JavaScript/14-File-IO/sample.js
