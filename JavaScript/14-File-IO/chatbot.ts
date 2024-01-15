@@ -13,7 +13,6 @@ class Chatbot {
     private forecastArr : Array<Forecast>;
     public userCmd : string;
 
-
     constructor () {
         this.queryCount = 0;
         this.name = "No name";
@@ -87,17 +86,6 @@ class Chatbot {
 
     public botRename() : void {
         console.clear();
-        // let asking : boolean = true;
-        // while (asking) {
-        //     const newName : string = readline.question("Type my new name, please: ");
-        //     // console.log(`Are you happy with the name ${newName}?`);
-        //     const usrConfirm : string = readline.question("Are you happy with the name " + newName + "? (yes/no)");
-        //     if (usrConfirm === "yes") {
-        //         this.name = newName;
-        //         console.log(`I was renamed to ${newName}?`);
-        //         asking = false;
-        //     } // if
-        // } // while
         const newName : string = readline.question("Type my new name, please: ");
         const usrConfirm : string = readline.question("Are you happy with the name " + newName + "? (yes/no)");
         if (usrConfirm === "yes") {
@@ -108,11 +96,11 @@ class Chatbot {
             console.log(`Name not changed. My name is ${this.name}.`);
         } // else
     } // botRename
+
     public forecast() : void {
         console.clear();
         console.log(`Tomorrows weather will be....`);
         const forecastNumb : number = Math.ceil(Math.random() * 4);
-        // console.log(forecastNumb);
         console.log(`Temperature: ${this.forecastArr[forecastNumb].Temperature} celsius degree`);
         console.log(`Cloudy: ${this.forecastArr[forecastNumb].Cloudy}`);
         console.log(`Sunny: ${this.forecastArr[forecastNumb].Sunny}`);
