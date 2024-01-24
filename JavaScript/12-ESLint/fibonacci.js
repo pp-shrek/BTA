@@ -1,16 +1,17 @@
 function fibonacci(n) {
-  const fibonacci = [];
+  let fibonacci = [];
   const message = "Only positive numbers allowed";
-  const counter = 0;
+  let counter = 0;
   if (n < 0) {
+    console.log(message);
     return undefined;
   } else if (n === 0) {
     return fibonacci;
   } else {
     fibonacci = [1];
     counter = 0; }
-  n1 = 0;
-  n2 = 1;
+  let n1 = 0;
+  let n2 = 1;
   while (counter < n) {
     let sum = n1 + n2;
     fibonacci.push(sum);
@@ -20,3 +21,4 @@ function fibonacci(n) {
   }
   return fibonacci;
 }
+fibonacci(5);
