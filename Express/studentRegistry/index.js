@@ -1,18 +1,11 @@
-const express = require("express");
+// const express = require("express");
+import express from "express";
+import { router } from "./studentRouter.js";
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-const roures = require("./studentRouter.js");
-
-// app.use(express.json());
-// app.use(express.urlencoded({extended: false}));
-
-// const bodyParser = require("body-parser");
-// const jsonParser = bodyParser.json();
-// const urlencodedParser = bodyParser.urlencoded({extended: false});
-
-app.use("/", roures);
+app.use("/", router);
 
 app.listen(3000);

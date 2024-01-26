@@ -1,4 +1,5 @@
-const express = require("express");
+// const express = require("express");
+import express from "express";
 const router = express.Router();
 
 let students = [
@@ -6,15 +7,6 @@ let students = [
     {id : 102, name : "teppo", email : "teppo@meil.com"},
     {id : 103, name : "matti", email : "matti@meil.com"}
 ];
-// router.use(express.json());
-// router.use(express.urlencoded({extended: false}));
-
-// const bodyParser = require("body-parser");
-// router.use(bodyParser.urlencoded({extended:true}));
-// router.use(bodyParser.json());
-// const urlencodedParser = bodyParser.urlencoded({extended:false});
-// const jsonParser = bodyParser.json();
-// const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 const logger = (req, res, next) => {
     // console.log(`logger`);
@@ -37,17 +29,14 @@ router.get('/students', (req, res) => {
     let studentsID = [];
     students.forEach(student => {
         studentsID.push(student.id);
-    });
+    }); // forEach
     res.json(studentsID);
 });
 
 router.get("/student/:id([0-9]{3,})", (req, res, next) => {
-    // console.log(req.params.id);
     const currStudent = students.find((student) => {
-        // console.log(student);
         return (student.id == req.params.id);
     });
-    // console.log(currStudent);
     if (currStudent != null) {
         res.json(currStudent);
     } // if
@@ -56,19 +45,12 @@ router.get("/student/:id([0-9]{3,})", (req, res, next) => {
         err.status = "fail";
         err.statusCode = 404;
         next(err);
-    }
+    } // else
 });
 
-// router.post("/", (req, res) => {
-//     // res.send("POST route on things");
-//     console.log(`POST request init!`);
-//     console.log(req.body);
-//     res.redirect("/");
-// });
-
 router.post("/student", (req, res, next) => {
-    console.log(`hei`);
-    console.log(req.body);
+    // console.log(`hei`);
+    // console.log(req.body);
     if (!req.body.id || !req.body.name || !req.body.email) {
         const err = new Error(`Bad Request`);
         err.status = "fail";
@@ -80,19 +62,60 @@ router.post("/student", (req, res, next) => {
             id : req.body.id,
             name : req.body.name,
             email : req.body.email
-        });
+        }); // push
         console.log(students);
         res.json({statusCode: 201});
     } // else
 });
 
-router.all("*", (req, res, next) => {
-    // res.status(404).send({error: "No on here"});
-    
+router.put("/student/:id([0-9]{3,})", (req, res, next) => {
+    const currStudent = students.findIndex((student) => {
+        return (student.id == req.params.id);
+    });
+    if (currStudent != -1 && req.body.name && req.body.email) {
+        students[currStudent].name = req.body.name;
+        students[currStudent].email = req.body.email;
+    } //if
+    else if (currStudent != -1 && req.body.name) {
+        students[currStudent].name = req.body.name;
+    } // else if
+    else if (currStudent != -1 && req.body.email) {
+        students[currStudent].email = req.body.email;
+    } // else if
+    else {
+        const err = new Error(`Bad Request`);
+        err.status = "fail";
+        err.statusCode = 404;
+        next(err);
+        return;
+    } // else
+    // console.log(students);
+    res.json({statusCode: 204});
+});
+
+router.delete("/student/:id([0-9]{3,})", (req, res, next) => {
+    const currStudent = students.findIndex((student) => {
+        return (student.id == req.params.id);
+    });
+    if (currStudent != -1) {
+        console.log(`poistettava löytyi`);
+        students.splice(currStudent, 1);
+    } //if
+    else {
+        const err = new Error(`Bad Request`);
+        err.status = "fail";
+        err.statusCode = 404;
+        next(err);
+        return;
+    } // else
+    // console.log(students);
+    res.json({statusCode: 204});
+});
+
+router.all("*", (req, res, next) => {    
     const err = new Error(`Can't find ${req.originalUrl} on the server!`);
     err.status = "fail";
     err.statusCode = 404;
-
     next(err);
 });
 
@@ -105,4 +128,5 @@ router.use((err, req, res, next) => {
     });
 });
 
-module.exports = router;
+// module.exports = router;
+export {router};
