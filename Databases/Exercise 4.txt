@@ -1,0 +1,26 @@
+1. All columns from loans that are loaned before 20.12.2023
+
+
+2. All columns of loans that are returned
+
+
+3. Columns user.full_name and borrows.borrowed_at
+of the user with an id of 1
+
+SELECT
+U.full_name AS name,
+B.borrowed_at AS borrow
+FROM users AS U
+JOIN borrows AS B on
+	U.id = B.user_id
+where U.id = 1;
+
+4. Columns book.name, book.release_year and
+language.name of all books that are released after 1960
+
+SELECT
+B.name, B.release_year, L.name
+FROM books AS B
+JOIN languages AS L on
+	B.language_id = L.id
+where B.release_year > 1960;

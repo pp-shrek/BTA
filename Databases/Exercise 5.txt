@@ -1,0 +1,16 @@
+1. Postpone the due date of the loan with an id of 2 by two days in the borrows table
+
+UPDATE borrows
+SET due_date = current_timestamp + (2 * interval '1 day') 
+WHERE id = 2;	
+
+2. Add a couple of new books to the books table
+
+INSERT INTO books (name, release_year, genre_id, language_id)
+VALUES
+    ('Hellurei', 1895, 3, 3),
+    ('jepulis', 1856, 5, 1);
+
+3. Delete one of the loans.
+
+delete from borrows where id = 3;
