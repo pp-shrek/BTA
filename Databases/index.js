@@ -10,6 +10,7 @@ dotenv.config();
 
 const server = express();
 // createProductsTable();
+server.use(express.json());
 server.use("/", router);
 
 const { PORT } = process.env;

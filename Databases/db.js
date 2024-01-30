@@ -10,7 +10,7 @@ const pool = new pg.Pool({
     password: String(PG_PASSWORD), database: PG_DATABASE,
 });
 
-const executeQuery = async (query, parameters) => {
+export const executeQuery = async (query, parameters) => {
     const client = await pool.connect();
     try {
         const result = await client.query(query, parameters);
@@ -34,5 +34,14 @@ export const createProductsTable = async () => {
     await executeQuery(query);
     console.log("Products table initialized");
 };
+
+// export const findAll = async () => {
+//     const query = `SELECT * FROM products`;
+//     //executeQuery(query);
+//     // console.log("findAll");
+//     const result = await executeQuery(query);
+//     console.log("findAll");
+//     return result;
+// };
 
 export default { executeQuery };
