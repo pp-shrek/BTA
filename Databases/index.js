@@ -1,15 +1,11 @@
 import express from "express";
-// import { createProductsTable } from "./db.js";
 import { router } from "./router.js";
 
 import dotenv from "dotenv";
-// import router from "./router.js";
 
 dotenv.config();
-// console.log(process.env);
 
 const server = express();
-// createProductsTable();
 server.use(express.json());
 server.use("/", router);
 

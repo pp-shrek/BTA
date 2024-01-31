@@ -1,21 +1,17 @@
 import { Router } from "express";
 import dao from "./dao.js";
-// import { findAll } from "./db.js";
 
 const router = Router();
 
 router.post("/", async (req, res) => {
     const product = req.body;
     const result = await dao.insertProduct(product);
-    // const storedProduct = { id: result.rows[0], ...product };
-    // res.send(storedProduct);
     res.send(result);
 });
 
 router.get("/", async (_req, res) => {
     console.log(`hellou`);
     const result = await dao.findAll();
-    // const result = await findAll();
     res.send(result.rows);
 });
 
@@ -39,5 +35,4 @@ router.delete("/:id", async (req, res) => {
     res.status(200).send("Deleted");
 });
 
-// export default router;
 export {router};

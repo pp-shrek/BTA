@@ -1,5 +1,8 @@
-// const express = require("express");
 import express from "express";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const router = express.Router();
 
 let students = [
@@ -15,17 +18,16 @@ const logger = (req, res, next) => {
     console.log(`endpoint: ${req.originalUrl}`);
     console.log(`request body ${req.body}`);
     next();
-  };
+};
   
 router.use(logger);
 
 router.get('/', (req, res) => {
-    res.send("Home page");
-    // res.sendFile(__dirname + "/index.html");
+    // res.send("Home page");
+    res.sendFile(__dirname + "/public/index.html");
 });
   
 router.get('/students', (req, res) => {
-    // res.send("Student page");
     let studentsID = [];
     students.forEach(student => {
         studentsID.push(student.id);
@@ -49,8 +51,6 @@ router.get("/student/:id([0-9]{3,})", (req, res, next) => {
 });
 
 router.post("/student", (req, res, next) => {
-    // console.log(`hei`);
-    // console.log(req.body);
     if (!req.body.id || !req.body.name || !req.body.email) {
         const err = new Error(`Bad Request`);
         err.status = "fail";
@@ -71,7 +71,7 @@ router.post("/student", (req, res, next) => {
 router.put("/student/:id([0-9]{3,})", (req, res, next) => {
     const currStudent = students.findIndex((student) => {
         return (student.id == req.params.id);
-    });
+    }); // findIndex
     if (currStudent != -1 && req.body.name && req.body.email) {
         students[currStudent].name = req.body.name;
         students[currStudent].email = req.body.email;
@@ -89,7 +89,6 @@ router.put("/student/:id([0-9]{3,})", (req, res, next) => {
         next(err);
         return;
     } // else
-    // console.log(students);
     res.json({statusCode: 204});
 });
 
@@ -108,7 +107,6 @@ router.delete("/student/:id([0-9]{3,})", (req, res, next) => {
         next(err);
         return;
     } // else
-    // console.log(students);
     res.json({statusCode: 204});
 });
 
@@ -128,5 +126,4 @@ router.use((err, req, res, next) => {
     });
 });
 
-// module.exports = router;
 export {router};

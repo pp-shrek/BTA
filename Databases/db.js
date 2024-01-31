@@ -35,13 +35,4 @@ export const createProductsTable = async () => {
     console.log("Products table initialized");
 };
 
-// export const findAll = async () => {
-//     const query = `SELECT * FROM products`;
-//     //executeQuery(query);
-//     // console.log("findAll");
-//     const result = await executeQuery(query);
-//     console.log("findAll");
-//     return result;
-// };
-
 export default { executeQuery };
