@@ -1,8 +1,9 @@
 import express from "express";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import argon2 from "argon2";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
 
 let students = [
@@ -10,6 +11,9 @@ let students = [
     {id : 102, name : "teppo", email : "teppo@meil.com"},
     {id : 103, name : "matti", email : "matti@meil.com"}
 ];
+
+let testUsrName = "jack";
+let testUsrHash = "$argon2id$v=19$m=65536,t=3,p=4$Uh89i9jXFG0lv4N4ijl4lA$uzOj1Y/T3Pb4QA2kAx8rsGTLGF6t/Nlv3vQf7/awQDw"; // testi
 
 const logger = (req, res, next) => {
     // console.log(`logger`);
@@ -67,6 +71,73 @@ router.post("/student", (req, res, next) => {
         res.json({statusCode: 201});
     } // else
 });
+
+router.post("/register", async (req, res, next) => {
+    if (!req.body.usrName || !req.body.usrPwd) {
+        const err = new Error(`Bad Request`);
+        err.status = "fail";
+        err.statusCode = 404;
+        next(err);
+    } // if
+    else {
+        let userName = req.body.usrName;
+        let userPwd = req.body.usrPwd;
+        let userHash;
+        try {
+            userHash = await argon2.hash(userPwd);
+        } // try
+        catch (err) {
+            console.log(`Error ${err}.`);
+        } // catch
+        console.log(`userName ${userName}`);
+        console.log(`userHash ${userHash}`);
+        res.json({statusCode: 201});
+    } // else
+}); // POST ("/register"
+//
+
+router.post("/login", async (req, res, next) => {
+    if (!req.body.usrName || !req.body.usrPwd) {
+        const err = new Error(`Bad Request`);
+        err.status = "fail";
+        err.statusCode = 404;
+        next(err);
+    } // if
+    else {
+        let userName = req.body.usrName;
+        let userPwd = req.body.usrPwd;
+        let userHash;
+        let userLoggedIn = false;
+        if (testUsrName === userName) {
+            try {
+                if (await argon2.verify(testUsrHash, userPwd)) {
+                    console.log(`matched`);
+                    userLoggedIn = true;
+                } // if
+                else {
+                    console.log(`no match`);
+                } // else
+            } // try
+            catch (err) {
+                console.log(`Error ${err}.`);
+            } // catch
+        } // if
+        // try {
+        //     userHash = await argon2.hash(userPwd);
+        // } // try
+        // catch (err) {
+        //     console.log(`Error ${err}.`);
+        // } // catch
+        // console.log(`userName ${userName}`);
+        // console.log(`userHash ${userHash}`);
+        if (userLoggedIn) {
+            res.json({statusCode: 201});
+        } // if
+        else {
+            res.json({statusCode: 401})
+        } // else
+    } // else
+}); // POST ("/login"
 
 router.put("/student/:id([0-9]{3,})", (req, res, next) => {
     const currStudent = students.findIndex((student) => {
