@@ -23,3 +23,7 @@ React/react-basics/.eslintrc.cjs
 React/react-basics/.gitignore
 React/react-basics/README.md
 React/react-basics/vite.config.js
+React/2-component-state/README.md
+React/2-component-state/.eslintrc.cjs
+React/2-component-state/.gitignore
+React/2-component-state/vite.config.js
