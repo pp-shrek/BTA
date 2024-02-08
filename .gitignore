@@ -27,3 +27,7 @@ React/2-component-state/README.md
 React/2-component-state/.eslintrc.cjs
 React/2-component-state/.gitignore
 React/2-component-state/vite.config.js
+React/toDoNotes
+React/toDoNotes/.eslintrc.cjs
+React/toDoNotes/.gitignore
+React/toDoNotes/vite.config.js
