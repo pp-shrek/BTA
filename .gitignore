@@ -32,3 +32,12 @@ React/toDoNotes/.eslintrc.cjs
 React/toDoNotes/.gitignore
 React/toDoNotes/vite.config.js
 React/exercise/Assignment 3 kesken
+React/BTA-React-Notes/BTA-React-Notes/.eslintrc.cjs
+React/BTA-React-Notes/BTA-React-Notes/.gitignore
+React/BTA-React-Notes/BTA-React-Notes/db.json
+React/BTA-React-Notes/BTA-React-Notes/index.html
+React/BTA-React-Notes/BTA-React-Notes/public/vite.svg
+React/BTA-React-Notes/BTA-React-Notes/README.md
+React/BTA-React-Notes/BTA-React-Notes/src/assets/react.svg
+React/BTA-React-Notes/BTA-React-Notes/vite.config.js
+
